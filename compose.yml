@@ -1,0 +1,13 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - 8080:8080
+    volumes:
+      # - ./:/app
+      - type: bind
+        source: .
+        target: /app
