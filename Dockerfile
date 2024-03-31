@@ -2,6 +2,7 @@
 # Dev
 # ======
 FROM golang:1.22-bookworm AS dev
+ENV TZ=Asia/Tokyo
 
 WORKDIR /app
 
@@ -18,6 +19,7 @@ CMD ["air", "-c", ".air.toml"]
 # Build
 # ======
 FROM golang:1.22-bookworm AS build
+ENV TZ=Asia/Tokyo
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
@@ -36,6 +38,7 @@ RUN go build -o /bin/main -ldflags="-s -w" ./src
 # Deploy
 # ======
 FROM gcr.io/distroless/static-debian12 AS deploy
+ENV TZ=Asia/Tokyo
 
 COPY --from=build /bin/main /main
 COPY ./src/url.json /src/url.json
