@@ -38,6 +38,7 @@ RUN go build -o /bin/main -ldflags="-s -w" ./src
 FROM gcr.io/distroless/static-debian12 AS deploy
 
 COPY --from=build /bin/main /main
+COPY ./src/url.json /src/url.json
 
 EXPOSE 8080
 USER nonroot:nonroot
