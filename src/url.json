@@ -1,0 +1,56 @@
+{
+    "categories": [
+        {
+            "from": "樟葉",
+            "to": "OIT",
+            "routes": [
+                {
+                    "name": "大阪工大",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E6%A8%9F%E8%91%89%E9%A7%85%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:4:1:9205,9206,9209"
+                },
+                {
+                    "name": "北山中央",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E6%A8%9F%E8%91%89%E9%A7%85%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:4:1:9201,9208,9203,9204"
+                }
+            ]
+        },
+        {
+            "from": "OIT",
+            "to": "樟葉",
+            "routes": [
+                {
+                    "name": "北行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:3:1:9205,9206"
+                },
+                {
+                    "name": "東行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1:1:9201,9203,9204"
+                }
+            ]
+        },
+        {
+            "from": "長尾",
+            "to": "OIT",
+            "routes": [
+                {
+                    "name": "大阪工大",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E9%95%B7%E5%B0%BE%E9%A7%85%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1:1:4061,4062"
+                },
+                {
+                    "name": "北山中央",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E9%95%B7%E5%B0%BE%E9%A7%85%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1:1:4101,4071,4072"
+                }
+            ]
+        },
+        {
+            "from": "OIT",
+            "to": "長尾",
+            "routes": [
+                {
+                    "name": "南行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:2:1:4101,4102,4061,4062,4072,4071"
+                }
+            ]
+        }
+    ]
+}
