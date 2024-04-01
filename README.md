@@ -7,8 +7,14 @@
 
 の4つのバス経路のリアルタイム運行状況を提供します。  
 
-## Setup
+## Development
 
 ```sh
 docker compose up -d
+```
+
+## Build
+
+```sh
+docker build .
 ```
