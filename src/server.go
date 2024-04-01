@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/rs/cors"
 )
 
 var busTimetables BusResponse
@@ -13,7 +15,11 @@ var busTimetablesCacheDate int64
 
 func server() {
 	http.HandleFunc("GET /v1/all", serverHandler)
-	http.ListenAndServe(":8080", nil)
+
+	c := cors.Default()
+	handler := c.Handler(http.DefaultServeMux)
+
+	http.ListenAndServe(":8080", handler)
 }
 
 func serverHandler(w http.ResponseWriter, r *http.Request) {
