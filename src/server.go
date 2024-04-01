@@ -2,16 +2,18 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/rs/cors"
 )
 
-var busTimetables BusResponse
-var busTimetablesCache BusResponse
-var busTimetablesCacheDate int64
+var (
+	busTimetables     BusResponse
+	busTimetablesTime time.Time
+)
+
+const cacheExpire = 60 * time.Second
 
 func server() {
 	http.HandleFunc("GET /v1/all", serverHandler)
@@ -23,16 +25,11 @@ func server() {
 }
 
 func serverHandler(w http.ResponseWriter, r *http.Request) {
-	// キャッシュが存在し、60秒以内ならキャッシュを返す
-	if busTimetablesCacheDate > 0 && time.Now().Unix()-busTimetablesCacheDate < 60 {
-		fmt.Println("Cache hit")
-		busTimetablesCache.IsCached = true
-		busTimetables = busTimetablesCache
+	if time.Since(busTimetablesTime) < cacheExpire {
+		busTimetables.IsCached = true
 	} else {
-		fmt.Println("Cache miss")
 		busTimetables = getBusTimetables()
-		busTimetablesCache = busTimetables
-		busTimetablesCacheDate = time.Now().Unix()
+		busTimetablesTime = time.Now()
 	}
 
 	w.Header().Set("Content-Type", "application/json")
