@@ -38,7 +38,7 @@ func sortBusResponse(busResponse BusResponse) BusResponse {
 	for _, buses := range busResponse.BusTimetables {
 		for i := 0; i < len(buses); i++ {
 			for j := i + 1; j < len(buses); j++ {
-				if buses[i].FixedTime > buses[j].FixedTime {
+				if buses[i].OnTime > buses[j].OnTime {
 					buses[i], buses[j] = buses[j], buses[i]
 				}
 			}

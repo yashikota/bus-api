@@ -16,15 +16,15 @@ type BusResponse struct {
 }
 
 type Bus struct {
-	From          string
-	To            string
+	BusStop       string
+	Stand         string
 	Name          string
 	IsSignal      bool
-	FixedTime     string
+	OnTime        string
 	EstimatedTime string
 	MoreMinutes   string
 	DelayMinutes  int
-	Type          string
+	System        string
 	Destination   string
 }
 
@@ -40,7 +40,8 @@ func extractMatch(s, pattern string) string {
 	return match[1]
 }
 
-func scrape(url string, from string, to string, name string, buses *[]Bus) {
+func scrape(url string, busStop string, stand string, name string) []Bus {
+	var buses []Bus
 	c := colly.NewCollector()
 
 	c.OnHTML(".pc.busstateArea", func(e *colly.HTMLElement) {
@@ -72,39 +73,47 @@ func scrape(url string, from string, to string, name string, buses *[]Bus) {
 			isSignal := e.ChildText(".signal_status") != ""
 
 			// 系統
-			typ := extractMatch(e.ChildText(".bsul"), `系統：\[(.*?)\]行先`)
+			system := extractMatch(e.ChildText(".bsul"), `系統：\[(.*?)\]行先`)
 
 			// 行先
 			destination := extractMatch(e.ChildText(".bsul"), `行先：(.*?)行`)
 
-			fmt.Println("FixedTime:", fixedTime, "EstimatedTime:", estimatedTime, "isSignal:", isSignal, "DelayMinutes:", delayMinutes, "MoreMinutes:", moreMinutes, "Type:", typ, "Destination:", destination)
+			fmt.Println("BusStop:", busStop, "Stand:", stand, "Name:", name, "IsSignal:", isSignal, "OnTime:", fixedTime, "EstimatedTime:", estimatedTime, "MoreMinutes:", moreMinutes, "DelayMinutes:", delayMinutes, "System:", system, "Destination:", destination)
 
-			*buses = append(*buses, Bus{From: from, To: to, Name: name, IsSignal: isSignal, FixedTime: fixedTime, EstimatedTime: estimatedTime, MoreMinutes: moreMinutes, DelayMinutes: delayMinutes, Type: typ, Destination: destination})
+			bus := Bus{
+				BusStop:       busStop,
+				Stand:         stand,
+				Name:          name,
+				IsSignal:      isSignal,
+				OnTime:        fixedTime,
+				EstimatedTime: estimatedTime,
+				MoreMinutes:   moreMinutes,
+				DelayMinutes:  delayMinutes,
+				System:        system,
+				Destination:   destination,
+			}
+			buses = append(buses, bus)
 		})
 	})
-
 	c.Visit(url)
 
+	return buses
 }
 
 func getBusTimetables() BusResponse {
 	busRouters := getBusRoutes()
-
-	var keyNames = []string{"Kuzuha-OIT", "OIT-Kuzuha", "Nagao-OIT", "OIT-Nagao"}
-
-	var busResponse BusResponse
-	busResponse.BusTimetables = make(map[string][]Bus)
-	busResponse.FetchTime = time.Now().Format("15:04") // mm:ss
+	var keyNames = []string{"Kuzuha-OIT", "Nagao-OIT", "OIT-Kuzuha", "OIT-Nagao"}
+	busResponse := BusResponse{
+		BusTimetables: make(map[string][]Bus),
+		FetchTime:     time.Now().Format("15:04"), // mm:ss
+	}
 
 	for i, category := range busRouters.Categories {
-		busResponse.BusTimetables[keyNames[i]] = []Bus{}
-		var buses []Bus
-
 		for _, route := range category.Routes {
 			fmt.Println(category.From, "=>", category.To, ":", route.Name)
-			scrape(route.URL, category.From, category.To, route.Name, &buses)
+			buses := scrape(route.URL, category.From, category.To, route.Name)
+			busResponse.BusTimetables[keyNames[i]] = append(busResponse.BusTimetables[keyNames[i]], buses...)
 		}
-		busResponse.BusTimetables[keyNames[i]] = buses
 
 		fmt.Println("=========================================")
 		time.Sleep(1 * time.Second)
