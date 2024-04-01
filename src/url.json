@@ -1,7 +1,7 @@
 {
     "categories": [
         {
-            "from": "樟葉",
+            "from": "樟葉駅 4のりば",
             "to": "OIT",
             "routes": [
                 {
@@ -15,21 +15,7 @@
             ]
         },
         {
-            "from": "OIT",
-            "to": "樟葉",
-            "routes": [
-                {
-                    "name": "北行",
-                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:3:1:9205,9206"
-                },
-                {
-                    "name": "東行",
-                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1:1:9201,9203,9204"
-                }
-            ]
-        },
-        {
-            "from": "長尾",
+            "from": "長尾駅 1のりば",
             "to": "OIT",
             "routes": [
                 {
@@ -43,8 +29,22 @@
             ]
         },
         {
-            "from": "OIT",
-            "to": "長尾",
+            "from": "北山中央",
+            "to": "樟葉駅",
+            "routes": [
+                {
+                    "name": "北行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:3:1:9205,9206"
+                },
+                {
+                    "name": "東行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1:1:9201,9203,9204"
+                }
+            ]
+        },
+        {
+            "from": "北山中央",
+            "to": "長尾駅",
             "routes": [
                 {
                     "name": "南行",
