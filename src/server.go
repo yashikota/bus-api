@@ -15,7 +15,7 @@ var (
 	busTimetablesLock sync.RWMutex
 )
 
-const cacheExpire = 60 * time.Second
+const cacheExpire = 70 * time.Second
 
 func server() {
 	http.HandleFunc("GET /v1/all", serverHandler)
@@ -41,7 +41,7 @@ func serverHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func refreshBusTimetables() {
-	ticker := time.NewTicker(50 * time.Second)
+	ticker := time.NewTicker(60 * time.Second)
 	defer ticker.Stop()
 
 	for range ticker.C {
