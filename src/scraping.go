@@ -67,7 +67,7 @@ func scrape(url string, busStop string, stand string, name string) []Bus {
 			}
 
 			// 残り時間
-			moreMinutes := extract(e.ChildText(".more_min"), `(\d+時間)?(\d+分)|まもなく到着`)
+			moreMinutes := extract(e.ChildText(".more_min"), `(\d+時間)?(\d+分)?|まもなく到着`)
 
 			// 受信中 or 未受信
 			isSignal := e.ChildText(".signal_status") != ""
