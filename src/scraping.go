@@ -52,7 +52,7 @@ func scrape(url string, busStop string, stand string, name string) []Bus {
 			}
 
 			// 定刻
-			fixedTime := extract(e.ChildText(".bsul.first"), `\b(\d{2}:\d{2})\b`)
+			onTime := extract(e.ChildText(".bsul.first"), `\b(\d{2}:\d{2})\b`)
 
 			// 予定時間 or 定刻
 			estimatedTime := extract(e.ChildText(".time"), `\b(\d{2}:\d{2})\b`)
@@ -78,14 +78,14 @@ func scrape(url string, busStop string, stand string, name string) []Bus {
 			// 行先
 			destination := extractMatch(e.ChildText(".bsul"), `行先：(.*?)行`)
 
-			fmt.Println("BusStop:", busStop, "Stand:", stand, "Name:", name, "IsSignal:", isSignal, "OnTime:", fixedTime, "EstimatedTime:", estimatedTime, "MoreMinutes:", moreMinutes, "DelayMinutes:", delayMinutes, "System:", system, "Destination:", destination)
+			// fmt.Println("BusStop:", busStop, "Stand:", stand, "Name:", name, "IsSignal:", isSignal, "OnTime:", onTime, "EstimatedTime:", estimatedTime, "MoreMinutes:", moreMinutes, "DelayMinutes:", delayMinutes, "System:", system, "Destination:", destination)
 
 			bus := Bus{
 				BusStop:       busStop,
 				Stand:         stand,
 				Name:          name,
 				IsSignal:      isSignal,
-				OnTime:        fixedTime,
+				OnTime:        onTime,
 				EstimatedTime: estimatedTime,
 				MoreMinutes:   moreMinutes,
 				DelayMinutes:  delayMinutes,
@@ -115,7 +115,6 @@ func getBusTimetables() BusResponse {
 			busResponse.BusTimetables[keyNames[i]] = append(busResponse.BusTimetables[keyNames[i]], buses...)
 		}
 
-		fmt.Println("=========================================")
 		time.Sleep(1 * time.Second)
 	}
 
