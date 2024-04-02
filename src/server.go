@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/rs/cors"
@@ -11,6 +12,7 @@ import (
 var (
 	busTimetables     BusResponse
 	busTimetablesTime time.Time
+	busTimetablesLock sync.RWMutex
 )
 
 const cacheExpire = 60 * time.Second
@@ -20,6 +22,8 @@ func server() {
 
 	c := cors.Default()
 	handler := c.Handler(http.DefaultServeMux)
+
+	go refreshBusTimetables()
 
 	http.ListenAndServe(":8080", handler)
 }
@@ -34,4 +38,17 @@ func serverHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(busTimetables)
+}
+
+func refreshBusTimetables() {
+	ticker := time.NewTicker(50 * time.Second)
+	defer ticker.Stop()
+
+	for range ticker.C {
+		newBusTimetables := getBusTimetables()
+		busTimetablesLock.Lock()
+		busTimetables = newBusTimetables
+		busTimetablesTime = time.Now()
+		busTimetablesLock.Unlock()
+	}
 }
