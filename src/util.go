@@ -19,7 +19,7 @@ type BusRouters struct {
 }
 
 func getBusRoutes() BusRouters {
-	filepath := filepath.Join("src", "url.json")
+	filepath := filepath.Join("src", "bus.json")
 	f, err := os.Open(filepath)
 	if err != nil {
 		log.Fatal(err)
