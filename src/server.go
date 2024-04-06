@@ -18,7 +18,10 @@ var (
 const cacheExpire = 70 * time.Second
 
 func server() {
-	http.HandleFunc("GET /v1/all", serverHandler)
+	http.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "robots.txt")
+	})
+	http.HandleFunc("/v1/all", serverHandler)
 
 	c := cors.Default()
 	handler := c.Handler(http.DefaultServeMux)

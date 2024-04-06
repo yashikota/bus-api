@@ -41,7 +41,8 @@ FROM gcr.io/distroless/static-debian12 AS deploy
 ENV TZ=Asia/Tokyo
 
 COPY --from=build /bin/main /main
-COPY ./src/url.json /src/url.json
+COPY /robots.txt /robots.txt
+COPY ./src/bus.json /src/bus.json
 
 EXPOSE 8080
 USER nonroot:nonroot
