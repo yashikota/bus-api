@@ -51,6 +51,30 @@
                     "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:2:1:4101,4102,4061,4062,4072,4071"
                 }
             ]
+        },
+        {
+            "from": "枚方市駅北口 5のりば",
+            "to": "OIT",
+            "routes": [
+                {
+                    "name": "北山中央",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E6%9E%9A%E6%96%B9%E5%B8%82%E9%A7%85%E5%8C%97%E5%8F%A3%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:5::4601"
+                }
+            ]
+        },
+        {
+            "from": "北山中央",
+            "to": "枚方市駅北口",
+            "routes": [
+                {
+                    "name": "東行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:1::4601"
+                },
+                {
+                    "name": "南行",
+                    "url": "https://busnavi.keihanbus.jp/pc/busstatedtl?dgmpl=%E5%8C%97%E5%B1%B1%E4%B8%AD%E5%A4%AE%E3%80%94%E4%BA%AC%E9%98%AA%E3%83%90%E3%82%B9%E3%80%95:2::4601"
+                }
+            ]
         }
     ]
 }

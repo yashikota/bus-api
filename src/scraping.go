@@ -102,7 +102,7 @@ func scrape(url string, busStop string, stand string, name string) []Bus {
 
 func getBusTimetables() BusResponse {
 	busRouters := getBusRoutes()
-	var keyNames = []string{"Kuzuha-OIT", "Nagao-OIT", "OIT-Kuzuha", "OIT-Nagao"}
+	var keyNames = []string{"Kuzuha-OIT", "Nagao-OIT", "OIT-Kuzuha", "OIT-Nagao", "Hirakata-OIT", "OIT-Hirakata"}
 	busResponse := BusResponse{
 		BusTimetables: make(map[string][]Bus),
 		FetchTime:     time.Now().Format("15:04"), // mm:ss
