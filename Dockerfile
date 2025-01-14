@@ -1,12 +1,12 @@
 # ======
 # Dev
 # ======
-FROM golang:1.22-bookworm AS dev
+FROM golang:1.23-bookworm AS dev
 ENV TZ=Asia/Tokyo
 
 WORKDIR /app
 
-RUN go install github.com/cosmtrek/air@latest
+RUN go install github.com/air-verse/air@v1.61.5
 
 COPY go.mod go.sum .air.toml ./
 RUN go mod download
@@ -18,7 +18,7 @@ CMD ["air", "-c", ".air.toml"]
 # ======
 # Build
 # ======
-FROM golang:1.22-bookworm AS build
+FROM golang:1.23-bookworm AS build
 ENV TZ=Asia/Tokyo
 
 ENV CGO_ENABLED=0
